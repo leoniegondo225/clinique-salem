@@ -150,7 +150,7 @@ export default function PatientForm() {
     // Soumettre les données si valides
     if (isValid) {
       try {
-        const response = await fetch('/api/patients', {
+        const req = await fetch('https://project-clinique.vercel.app/api/create-patient', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -158,7 +158,9 @@ export default function PatientForm() {
           body: JSON.stringify(formData),
         });
 
-        if (!response.ok) {
+        const res = await req.json()
+        console.log(res)
+        if (res.message !== "ok") {
           throw new Error('Erreur lors de l\'enregistrement du patient');
         }
 

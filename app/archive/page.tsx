@@ -24,10 +24,10 @@ const DocumentsPage = () => {
   return (
     <div className="min-h-screen bg-blue-50 flex flex-col items-center py-8 px-4">
       {/* Titre & Illustration */}
-      <div className="max-w-6xl w-full bg-white shadow-xl rounded-2xl p-8 text-center">
-        <h1 className="text-3xl font-extrabold text-blue-800">Gestion des Documents Médicaux</h1>
+      <div className="max-w-6xl w-full bg-white shadow-xl rounded-2xl p-2 text-center">
+        <h1 className="text-2xl font-extrabold text-blue-800 pt-2">Gestion des Documents Médicaux</h1>
         <p className="text-gray-600 mt-3">Stockez et accédez aux dossiers médicaux en toute sécurité.</p>
-        <img src="/medical-documents.svg" alt="Documents" className="w-64 mx-auto my-6" />
+        
       </div>
 
       {/* Upload Section */}

@@ -41,7 +41,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Mobile Header with hamburger menu */}
       <div className="md:hidden bg-gradient-to-r from-blue-600 to-green-600 p-4 flex justify-between items-center sticky top-0 z-50">
           <Link href="/" className="block">
-          <h1 className="text-xl font-bold text-white tracking-wide">Admin</h1>
+          <h1 className="text-xl font-bold text-white tracking-wide">Gestion</h1>
           </Link>
         <button 
           onClick={() => setSidebarOpen(prev => !prev)}
@@ -152,7 +152,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             Notifications
           </Link>
           <Link 
-            href="/archives"
+            href="/archive"
             className={`w-full flex items-center px-4 py-3 rounded-lg text-sm font-medium ${activeTab === 'archives' ? 'bg-white/20 text-white font-bold shadow-lg transform scale-102 transition-all' : 'text-white/90 hover:bg-white/10 hover:text-white hover:shadow-md transition-all'}`}
             onClick={() => handleNavigation('archives')}
           >
