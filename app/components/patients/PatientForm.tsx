@@ -111,7 +111,7 @@ export default function PatientForm() {
   };
 
   // Gérer la soumission du formulaire
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e:  React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let isValid = true;
 
@@ -185,7 +185,7 @@ export default function PatientForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-6 space-y-6 w-full min-w-[320px] max-w-4xl mx-auto ">
+    <form onSubmit={(e) => handleSubmit(e)} className="bg-white rounded-xl shadow-lg p-6 space-y-6 w-full min-w-[320px] max-w-4xl mx-auto ">
       {/* Informations Personnelles */}
       <div className="space-y-4 pb-6">
         <h3 className="text-lg font-semibold text-gray-900">Informations Personnelles</h3>
