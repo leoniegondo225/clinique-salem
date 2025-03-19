@@ -8,9 +8,9 @@ import PrescriptionForm from './forms/PrescriptionForm';
 // Définir des interfaces pour les données des patients
 interface EmergencyContact {
   id: string;
-  name: string;
-  relationship: string;
-  phone: string;
+  nom: string;
+  relation: string;
+  telephone: string;
 }
 
 interface Appointment {
@@ -43,7 +43,7 @@ interface MedicalRecord {
 
 interface PatientDetails {
   id: string;
-  name: string;
+  nom: string;
   age: number;
   birthDate: string;
   gender: string;
@@ -63,7 +63,7 @@ interface PatientDetails {
 // Sample data for demonstration
 const samplePatientDetails: PatientDetails = {
   "id": "1",
-  "name": "Koffi Kouadio",
+  "nom": "Koffi Kouadio",
   "age": 45,
   "birthDate": "1978-05-12",
   "gender": "Homme",
@@ -77,15 +77,15 @@ const samplePatientDetails: PatientDetails = {
   emergencyContacts: [
     {
       id: 'ec1',
-      name: 'Marie Dupont',
-      relationship: 'Épouse',
-      phone: '06 87 65 43 21',
+      nom: 'Marie Dupont',
+      relation: 'Épouse',
+      telephone: '06 87 65 43 21',
     },
     {
       id: 'ec2',
-      name: 'Thomas Dupont',
-      relationship: 'Fils',
-      phone: '06 54 32 10 98',
+      nom: 'Thomas Dupont',
+      relation: 'Fils',
+      telephone: '06 54 32 10 98',
     },
   ],
   appointments: [
@@ -251,7 +251,7 @@ export default function PatientDetail() {
       <div className="p-6 bg-gradient-to-r from-blue-500 to-green-500 text-white">
         <div className="flex justify-between items-start">
           <div>
-            <h2 className="text-2xl font-bold">{patient.name}</h2>
+            <h2 className="text-2xl font-bold">{patient.nom}</h2>
             <div className="mt-2 flex flex-wrap sm:flex-nowrap gap-2 sm:gap-4 text-sm">
               <span>{patient.age} ans</span>
               <span>{patient.gender}</span>
@@ -280,7 +280,7 @@ export default function PatientDetail() {
             className={`py-3 sm:py-4 px-3 sm:px-6 text-center border-b-2 font-medium text-xs sm:text-sm ${activeTab === 'contacts' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}
             onClick={() => handleTabChange('contacts')}
           >
-            Contacts d&#39urgence
+            Contacts d&lsquo;urgence
           </button>
           <button
             className={`py-3 sm:py-4 px-3 sm:px-6 text-center border-b-2 font-medium text-xs sm:text-sm ${activeTab === 'appointments' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}
@@ -403,9 +403,9 @@ export default function PatientDetail() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5">
                 {patient.emergencyContacts.map((contact) => (
                   <div key={contact.id} className="border rounded-lg p-4 bg-gray-50">
-                    <div className="font-medium">{contact.name}</div>
-                    <div className="text-sm text-gray-600 mt-1">{contact.relationship}</div>
-                    <div className="text-sm text-gray-600 mt-1">{contact.phone}</div>
+                    <div className="font-medium">{contact.nom}</div>
+                    <div className="text-sm text-gray-600 mt-1">{contact.relation}</div>
+                    <div className="text-sm text-gray-600 mt-1">{contact.telephone}</div>
                     {isEditing && (
                         <div className="mt-3 flex space-x-2">
                         <button 

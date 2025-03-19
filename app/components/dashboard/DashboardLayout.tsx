@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FaHome, FaUserMd, FaFlask, FaBars, FaTimes, FaHospital, FaAmbulance, FaUsers, FaPills, FaMoneyBillWave, FaShieldAlt, FaChartLine, FaBell, FaArchive } from 'react-icons/fa';
+import { FaUserMd, FaFlask, FaBars, FaTimes, FaHospital, FaAmbulance, FaUsers, FaPills, FaMoneyBillWave, FaShieldAlt, FaChartLine, FaBell, FaArchive, FaPlusCircle } from 'react-icons/fa';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -40,9 +40,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex flex-col md:flex-row relative">
       {/* Mobile Header with hamburger menu */}
       <div className="md:hidden bg-gradient-to-r from-blue-600 to-green-600 p-4 flex justify-between items-center sticky top-0 z-50">
-        <Link href="/" className="block">
-          <h1 className="text-xl font-bold text-white tracking-wide">SALEM</h1>
-        </Link>
+          <Link href="/" className="block">
+          <h1 className="text-xl font-bold text-white tracking-wide">Admin</h1>
+          </Link>
         <button 
           onClick={() => setSidebarOpen(prev => !prev)}
           className="text-white p-2 rounded-md hover:bg-white/10"
@@ -68,8 +68,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             className={`w-full flex items-center px-4 py-3 rounded-lg text-sm font-medium ${activeTab === 'welcome' ? 'bg-white/20 text-white font-bold shadow-lg transform scale-102 transition-all' : 'text-white/90 hover:bg-white/10 hover:text-white hover:shadow-md transition-all'}`}
             onClick={() => handleNavigation('welcome')}
           >
-            <FaHome className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3" />
-            Tableau de bord
+            <FaPlusCircle className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3" />
+            Ajouter un nouveau patient
           </Link>
           <Link 
             href="/patient-management"
@@ -152,7 +152,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             Notifications
           </Link>
           <Link 
-            href="/archive"
+            href="/archives"
             className={`w-full flex items-center px-4 py-3 rounded-lg text-sm font-medium ${activeTab === 'archives' ? 'bg-white/20 text-white font-bold shadow-lg transform scale-102 transition-all' : 'text-white/90 hover:bg-white/10 hover:text-white hover:shadow-md transition-all'}`}
             onClick={() => handleNavigation('archives')}
           >

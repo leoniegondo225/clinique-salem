@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 // Define the Patient interface
 interface Patient {
   id: string;
-  name: string;
+  nom: string;
   age: number;
   gender: string;
   contact: string;
@@ -18,7 +18,7 @@ interface Patient {
 const samplePatients: Patient[] = [
   {
     "id": "1",
-    "name": "Koffi Kouadio",
+    "nom": "Koffi Kouadio",
     "age": 45,
     "gender": "Homme",
     "contact": "+225 01 23 45 67 89",
@@ -28,7 +28,7 @@ const samplePatients: Patient[] = [
   },
   {
     "id": "2",
-    "name": "Aminata Diouf",
+    "nom": "Aminata Diouf",
     "age": 32,
     "gender": "Femme",
     "contact": "+221 77 12 34 56 78",
@@ -38,7 +38,7 @@ const samplePatients: Patient[] = [
   },
   {
     "id": "3",
-    "name": "Mamadou Keita",
+    "nom": "Mamadou Keita",
     "age": 58,
     "gender": "Homme",
     "contact": "+223 76 45 67 89 10",
@@ -52,7 +52,7 @@ export default function PatientList() {
   const [patients] = useState<Patient[]>(samplePatients);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterGender, setFilterGender] = useState<string>('all');
-  const [sortBy, setSortBy] = useState<keyof Patient>('name');
+  const [sortBy, setSortBy] = useState<keyof Patient>('nom');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [,setSelectedPatient] = useState<Patient | null>(null);
   const [] = useState(false);
@@ -61,7 +61,7 @@ export default function PatientList() {
   const filteredPatients = patients
     .filter((patient) => {
       // Filter by search term
-      const matchesSearch = patient.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      const matchesSearch = patient.nom.toLowerCase().includes(searchTerm.toLowerCase()) ||
         patient.medicalHistory.some(condition => condition.toLowerCase().includes(searchTerm.toLowerCase()));
       
       // Filter by gender
@@ -137,10 +137,10 @@ export default function PatientList() {
               <th 
                 scope="col" 
                 className="px-4 sm:px-5 md:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
-                onClick={() => handleSort('name')}
+                onClick={() => handleSort('nom')}
               >
                 Nom
-                {sortBy === 'name' && (
+                {sortBy === 'nom' && (
                   <span className="ml-1">{sortDirection === 'asc' ? '↑' : '↓'}</span>
                 )}
               </th>
@@ -190,7 +190,7 @@ export default function PatientList() {
               filteredPatients.map((patient) => (
                 <tr key={patient.id} className="hover:bg-blue-50 transition-colors">
                   <td className="px-4 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
-                    <div className="text-xs sm:text-sm font-medium text-gray-900">{patient.name}</div>
+                    <div className="text-xs sm:text-sm font-medium text-gray-900">{patient.nom}</div>
                   </td>
                   <td className="px-4 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
                     <div className="text-xs sm:text-sm text-gray-500">{patient.age} ans</div>

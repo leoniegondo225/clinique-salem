@@ -5,9 +5,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 interface EmergencyContact {
   id: string;
-  name: string;
-  relationship: string;
-  phone: string;
+  nom: string;
+  relation: string;
+  telephone: string;
+  
 }
 
 interface EmergencyContactFormProps {
@@ -19,15 +20,15 @@ interface EmergencyContactFormProps {
 export default function EmergencyContactForm({ contact, onSave, onCancel }: EmergencyContactFormProps) {
   const [formData, setFormData] = useState<EmergencyContact>({
     id: contact?.id || uuidv4(),
-    name: contact?.name || '',
-    relationship: contact?.relationship || '',
-    phone: contact?.phone || ''
+    nom: contact?.nom || '',
+    relation: contact?.relation || '',
+    telephone: contact?.telephone || ''
   });
 
   const [errors, setErrors] = useState<{
-    name?: string;
-    relationship?: string;
-    phone?: string;
+    nom?: string;
+    relation?: string;
+    telephone?: string;
   }>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,23 +41,23 @@ export default function EmergencyContactForm({ contact, onSave, onCancel }: Emer
 
   const validate = () => {
     const newErrors: {
-      name?: string;
-      relationship?: string;
-      phone?: string;
+      nom?: string;
+      relation?: string;
+      telephone?: string;
     } = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = 'Le nom est requis';
+    if (!formData.nom.trim()) {
+      newErrors.nom = 'Le nom est requis';
     }
 
-    if (!formData.relationship.trim()) {
-      newErrors.relationship = 'La relation est requise';
+    if (!formData.relation.trim()) {
+      newErrors.relation = 'La relation est requise';
     }
 
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Le numéro de téléphone est requis';
-    } else if (!/^\d{2}\s?\d{2}\s?\d{2}\s?\d{2}\s?\d{2}$/.test(formData.phone.replace(/\s/g, ''))) {
-      newErrors.phone = 'Format de téléphone invalide (ex: 06 12 34 56 78)';
+    if (!formData.telephone.trim()) {
+      newErrors.telephone = 'Le numéro de téléphone est requis';
+    } else if (!/^\d{2}\s?\d{2}\s?\d{2}\s?\d{2}\s?\d{2}$/.test(formData.telephone.replace(/\s/g, ''))) {
+      newErrors.telephone = 'Format de téléphone invalide (ex: 06 12 34 56 78)';
     }
 
     setErrors(newErrors);
@@ -77,43 +78,43 @@ export default function EmergencyContactForm({ contact, onSave, onCancel }: Emer
       </h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nom</label>
+          <label htmlFor="nom" className="block text-sm font-medium text-gray-700">Nom</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formData.name}
+            id="nom"
+            name="nom"
+            value={formData.nom}
             onChange={handleChange}
-            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm ${errors.name ? 'border-red-300' : ''}`}
+            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm ${errors.nom ? 'border-red-300' : ''}`}
           />
-          {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
+          {errors.nom && <p className="mt-1 text-sm text-red-600">{errors.nom}</p>}
         </div>
 
         <div>
-          <label htmlFor="relationship" className="block text-sm font-medium text-gray-700">Relation</label>
+          <label htmlFor="relation" className="block text-sm font-medium text-gray-700">Relation</label>
           <input
             type="text"
-            id="relationship"
-            name="relationship"
-            value={formData.relationship}
+            id="relation"
+            name="relation"
+            value={formData.relation}
             onChange={handleChange}
-            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm ${errors.relationship ? 'border-red-300' : ''}`}
+            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm ${errors.relation ? 'border-red-300' : ''}`}
           />
-          {errors.relationship && <p className="mt-1 text-sm text-red-600">{errors.relationship}</p>}
+          {errors.relation && <p className="mt-1 text-sm text-red-600">{errors.relation}</p>}
         </div>
 
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Téléphone</label>
           <input
             type="text"
-            id="phone"
-            name="phone"
-            value={formData.phone}
+            id="telephone"
+            name="telephone"
+            value={formData.telephone}
             onChange={handleChange}
             placeholder="06 12 34 56 78"
-            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm ${errors.phone ? 'border-red-300' : ''}`}
+            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm ${errors.telephone ? 'border-red-300' : ''}`}
           />
-          {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
+          {errors.telephone && <p className="mt-1 text-sm text-red-600">{errors.telephone}</p>}
         </div>
 
         <div className="flex justify-end space-x-3 pt-4">
