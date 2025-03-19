@@ -184,6 +184,10 @@ export default function PatientForm() {
     }
   };
 
+  const hello = () =>{
+    alert("cliqué")
+  }
+
   return (
     <form onSubmit={(e) => handleSubmit(e)} className="bg-white rounded-xl shadow-lg p-6 space-y-6 w-full min-w-[320px] max-w-4xl mx-auto ">
       {/* Informations Personnelles */}
@@ -352,7 +356,7 @@ export default function PatientForm() {
 
       {/* Soumettre */}
       <div className="pt-6">
-        <button
+        <button onClick={hello}
           type="submit"
           className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-md transition-colors duration-300 shadow-sm hover:shadow-md"
         >
