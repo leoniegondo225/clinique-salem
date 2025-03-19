@@ -154,6 +154,7 @@ export default function PatientForm() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            "Origin": "https://clinique-salem.vercel.app/"
           },
           body: JSON.stringify(formData),
         });
