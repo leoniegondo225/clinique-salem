@@ -1,3 +1,5 @@
+"use client"
+
 import DashboardLayout from '../components/dashboard/DashboardLayout';
 import PatientList from '../components/patients/PatientList';
 import PatientDetail from '../components/patients/PatientDetail';

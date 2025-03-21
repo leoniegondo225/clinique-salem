@@ -80,7 +80,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             Gestion des patients
           </Link>
           <Link 
-            href="/admissions"
+            href="/hos"
             className={`w-full flex items-center px-4 py-3 rounded-lg text-sm font-medium ${activeTab === 'admissions' ? 'bg-white/20 text-white font-bold shadow-lg transform scale-102 transition-all' : 'text-white/90 hover:bg-white/10 hover:text-white hover:shadow-md transition-all'}`}
             onClick={() => handleNavigation('admissions')}
           >

@@ -49,6 +49,8 @@ export default function PatientForm() {
     emergencyContacts: [],
   });
 
+  //const [ emergencyContacts, setEmergencyContacts] = useState([])
+
   // État pour les erreurs
   const [errors, setErrors] = useState<ErrorState>({});
 
@@ -115,15 +117,17 @@ export default function PatientForm() {
     e.preventDefault();
     let isValid = true;
 
+    console.log(formData)
+
     // Validation des champs principaux
-    Object.keys(formData).forEach((key) => {
+    /* Object.keys(formData).forEach((key) => {
       if (key !== 'emergencyContacts' && key !== 'id') {
         isValid = validateField(key, String(formData[key as keyof Patient])) && isValid;
       }
-    });
+    }); */
 
     // Validation des contacts d'urgence
-    formData.emergencyContacts.forEach((contact, index) => {
+   /*  formData.emergencyContacts.forEach((contact, index) => {
       if (!contact.nom.trim()) {
         setErrors((prev) => ({
           ...prev,
@@ -145,42 +149,40 @@ export default function PatientForm() {
         }));
         isValid = false;
       }
-    });
+    }); */
 
     // Soumettre les données si valides
-    if (isValid) {
-      try {
-        const req = await fetch('https://project-clinique.vercel.app/api/create-patient', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            "Origin": "https://clinique-salem.vercel.app/"
-          },
-          body: JSON.stringify(formData),
-        });
+    try {
+      const req = await fetch('https://project-clinique.vercel.app/api/create-patient', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          "Origin": "https://clinique-salem.vercel.app/"
+        },
+        body: JSON.stringify(formData),
+      });
 
-        const res = await req.json()
-        console.log(res)
-        if (res.message !== "ok") {
-          throw new Error('Erreur lors de l\'enregistrement du patient');
-        }
-
-        // Réinitialisation des données et des erreurs après la soumission
-        setFormData({
-          id: uuidv4(),
-          prenom: '',
-          nom: '',
-          birthDate: '',
-          telephone: '',
-          email: '',
-          gender: '',
-          emergencyContacts: [],
-        });
-        setErrors({});
-        console.log('Patient enregistré avec succès');
-      } catch (error) {
-        console.error('Erreur de soumission:', error);
+      const res = await req.json()
+      console.log(res)
+      if (res.message !== "ok") {
+        throw new Error('Erreur lors de l\'enregistrement du patient');
       }
+
+      // Réinitialisation des données et des erreurs après la soumission
+      setFormData({
+        id: uuidv4(),
+        prenom: '',
+        nom: '',
+        birthDate: '',
+        telephone: '',
+        email: '',
+        gender: '',
+        emergencyContacts: [],
+      });
+      setErrors({});
+      console.log('Patient enregistré avec succès');
+    } catch (error) {
+      console.error('Erreur de soumission:', error);
     }
   };
 
@@ -226,6 +228,23 @@ export default function PatientForm() {
               } shadow-sm focus:border-blue-500 focus:ring-blue-500`}
             />
             {errors.prenom && <p className="mt-1 text-sm text-red-600">{errors.prenom}</p>}
+          </div>
+
+          <div>
+            <label htmlFor="firstName" className="block text-sm font-medium text-gray-600">
+              Téléphone <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="telephone"
+              name="telephone"
+              value={formData.telephone}
+              onChange={handleInputChange}
+              className={`mt-1 block w-full rounded-md p-1 ${
+                errors.email ? 'border-red-300' : 'border-gray-300'
+              } shadow-sm focus:border-blue-500 focus:ring-blue-500`}
+            />
+            {errors.email && <p className="mt-1 text-sm text-red-600">{errors.telephone}</p>}
           </div>
 
           <div>
@@ -356,7 +375,7 @@ export default function PatientForm() {
 
       {/* Soumettre */}
       <div className="pt-6">
-        <button onClick={hello}
+        <button
           type="submit"
           className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-md transition-colors duration-300 shadow-sm hover:shadow-md"
         >
